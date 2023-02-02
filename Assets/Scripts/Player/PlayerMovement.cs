@@ -23,6 +23,9 @@ namespace Player
         private void HandleMovementAndRotation()
         {
             var movementTransform = new Vector3(_movement.x, 0, _movement.y);
+
+            if (movementTransform.magnitude == 0) return;
+            
             _transform.position += movementTransform * (Time.deltaTime * movementSpeed);
             _transform.forward = Vector3.Slerp(_transform.forward, movementTransform, Time.deltaTime * rotationSpeed);
         }
