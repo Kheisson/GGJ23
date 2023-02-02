@@ -32,6 +32,18 @@ namespace Player
         {
             _movement = value.Get<Vector2>();
         }
-    
+        
+        #region Debug
+#if UNITY_EDITOR
+        
+        private void OnDrawGizmos()
+        {
+            //draws a sphere in front of the player
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + transform.forward, 0.5f);
+        }
+        
+#endif
+        #endregion
     }
 }
