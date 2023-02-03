@@ -24,9 +24,15 @@ public class TilemapPainter : MonoBehaviour
     void Update()
     {
         interactingCell = grid.WorldToCell(Player.transform.position + Player.transform.forward);
+        //Debug.Log(interactingCell);
         if (playerInput.actions["Fire"].WasPerformedThisFrame())
         {
-            Instantiate(marker, grid.CellToWorld(interactingCell) + gridOffset, Quaternion.identity);
+            if (GridManager.gridArray[24 - interactingCell.x, 24 - interactingCell.y] == 0)
+            {
+                Instantiate(marker, grid.CellToWorld(interactingCell) + gridOffset, Quaternion.identity);
+                GridManager.gridArray[24 - interactingCell.x, 24 - interactingCell.y] = 1;
+                Debug.Log(GridManager.gridArray.ToString());
+            }
         }
     }
 
