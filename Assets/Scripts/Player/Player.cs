@@ -11,7 +11,7 @@ namespace Player
         
         private PlayerMovement _playerMovement;
         private PlayerAnimation _playerAnimation;
-        private PlayerInteractions _playerInteractions;
+        public PlayerInteractions _playerInteractions;
         private Transform _transform;
         private IPlayerComponent[] _playerComponents;
         
