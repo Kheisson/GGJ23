@@ -7,5 +7,6 @@ namespace Interactables
         void Interact();
         bool IsInteractable();
         GameObject GetGameObject();
+        EInteractableType GetInteractableType();
     }
 }

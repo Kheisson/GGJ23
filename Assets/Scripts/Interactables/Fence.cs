@@ -13,6 +13,7 @@ namespace Interactables
             _animator = GetComponent<Animator>();
             MeshRenderer = GetComponent<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
+            InteractableType = EInteractableType.Door;
         }
 
         public override void Interact()
