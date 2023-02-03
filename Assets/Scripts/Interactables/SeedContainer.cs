@@ -1,28 +1,33 @@
+using Equipment;
 using UnityEngine;
 
 namespace Interactables
 {
     public class SeedContainer : InteractableObject
     {
+        [SerializeField] private VeggySo veggySo;
         private Animator _animator;
         private readonly int _rattleHash = Animator.StringToHash("Rattle");
 
+        public GameObject VeggyPrefab => veggySo.veggeyPrefab;
+        
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            MeshRenderer = GetComponent<MeshRenderer>();
+            MeshRenderer = GetComponentInChildren<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
             InteractableType = EInteractableType.SeedBox;
+            GetComponentInChildren<SpriteRenderer>().sprite = veggySo.veggeySprite;
         }
-
+        
         public override void Interact()
         {
-            throw new System.NotImplementedException();
+            _animator.SetTrigger(_rattleHash);
         }
 
         public override bool IsInteractable()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
