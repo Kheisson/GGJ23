@@ -50,6 +50,19 @@ namespace Player
         {
             _playerInteractions.Interact();
         }
+
+
+        #region Debug
+
+        #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.forward * 1f);
+        }
+        #endif
+
+        #endregion
         
     }
 }
