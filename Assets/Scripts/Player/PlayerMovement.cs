@@ -1,21 +1,20 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : IPlayerComponent
     {
-        [SerializeField] private float movementSpeed = 5f;
-        [SerializeField] private float rotationSpeed = 10f;
-        private Transform _transform;
+        private const float MOVEMENT_SPEED = 5f;
+        private const float ROTATION_SPEED = 10f;
         private Vector2 _movement;
-    
-        private void Awake()
+        private readonly Player _player;
+
+        public PlayerMovement(Player player)
         {
-            _transform = transform;
+            _player = player;
         }
 
-        private void Update()
+        public void OnUpdate()
         {
             HandleMovementAndRotation();
         }
@@ -26,27 +25,13 @@ namespace Player
 
             if (movementTransform.magnitude == 0) return;
             
-            _transform.position += movementTransform * (Time.deltaTime * movementSpeed);
-            _transform.forward = Vector3.Slerp(_transform.forward, movementTransform, Time.deltaTime * rotationSpeed);
+            _player.PlayerTransform.position += movementTransform * (Time.deltaTime * MOVEMENT_SPEED);
+            _player.PlayerTransform.forward = Vector3.Slerp(_player.transform.forward, movementTransform, Time.deltaTime * ROTATION_SPEED);
         }
 
-        // This method is called by the Input System 
-        public void OnMove(InputValue value)
+        public void SetMovement(Vector2 value)
         {
-            _movement = value.Get<Vector2>();
+            _movement = value;
         }
-        
-        #region Debug
-#if UNITY_EDITOR
-        
-        private void OnDrawGizmos()
-        {
-            //draws a sphere in front of the player
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + transform.forward, 0.5f);
-        }
-        
-#endif
-        #endregion
     }
 }

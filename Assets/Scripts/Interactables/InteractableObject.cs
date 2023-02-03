@@ -2,16 +2,15 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class InteractableObject : MonoBehaviour, IInteractable
+    public abstract class InteractableObject : MonoBehaviour, IInteractable
     {
-        public void Interact()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Interact();
 
-        public bool IsInteractable()
+        public abstract bool IsInteractable();
+        
+        public GameObject GetGameObject()
         {
-            throw new System.NotImplementedException();
+            return this.gameObject;
         }
     }
 }
