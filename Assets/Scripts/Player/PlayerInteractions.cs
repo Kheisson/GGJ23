@@ -8,16 +8,16 @@ namespace Player
     {
         private const float INTERACTION_RANGE = 1f;
         private readonly LayerMask _interactableLayer;
-        private readonly Player _player;
+        private readonly PlayerContainer _playerContainer;
         private IInteractable _currentInteractable;
         private RaycastHit _selectedInteractable;
 
         public event Action<IInteractable> OnInteractEvent;
 
-        public PlayerInteractions(Player player, LayerMask interactableLayer)
+        public PlayerInteractions(PlayerContainer playerContainer, LayerMask interactableLayer)
         {
             _interactableLayer = interactableLayer;
-            _player = player;
+            _playerContainer = playerContainer;
         }
 
 
@@ -36,7 +36,7 @@ namespace Player
 
         public void OnUpdate()
         {
-            if (!Physics.Raycast(_player.PlayerTransform.position, _player.PlayerTransform.forward, out _selectedInteractable, INTERACTION_RANGE, _interactableLayer))
+            if (!Physics.Raycast(_playerContainer.PlayerTransform.position, _playerContainer.PlayerTransform.forward, out _selectedInteractable, INTERACTION_RANGE, _interactableLayer))
             {
                 return;
             }
