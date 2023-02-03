@@ -16,7 +16,7 @@ namespace Interactables
             InteractableType = EInteractableType.Door;
         }
 
-        public override void Interact()
+        public override void Interact(bool isLeftHandEmpty)
         {
             _animator.SetBool(_openHash, !_animator.GetBool(_openHash));
         }

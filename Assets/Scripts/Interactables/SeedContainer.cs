@@ -20,8 +20,11 @@ namespace Interactables
             GetComponentInChildren<SpriteRenderer>().sprite = veggySo.veggeySprite;
         }
         
-        public override void Interact()
+        public override void Interact(bool isLeftHandEmpty)
         {
+            //Cannot grab a seed if the left hand is not empty
+            if(!isLeftHandEmpty) return;
+            
             _animator.SetTrigger(_rattleHash);
         }
 

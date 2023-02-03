@@ -21,15 +21,16 @@ namespace Player
         }
 
 
-        public void Interact()
+        public void Interact(bool isLeftHandEmpty)
         {
+            
             if (_selectedInteractable.collider == null) return;
             
             _currentInteractable = _selectedInteractable.collider.GetComponent<IInteractable>();
             
             if (_currentInteractable.IsInteractable())
             {
-                _currentInteractable.Interact();
+                _currentInteractable.Interact(isLeftHandEmpty);
                 OnInteractEvent?.Invoke(_currentInteractable);
             }
         }

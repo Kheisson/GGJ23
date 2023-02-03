@@ -4,6 +4,7 @@ namespace Interactables
     {
         SeedBox,
         Door,
-        Land
+        Land,
+        GarbageCan,
     }
 }

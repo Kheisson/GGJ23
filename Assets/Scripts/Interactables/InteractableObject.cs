@@ -9,7 +9,7 @@ namespace Interactables
         protected MeshRenderer MeshRenderer;
         protected EInteractableType InteractableType;
 
-        public abstract void Interact();
+        public abstract void Interact(bool isLeftHandEmpty);
         public abstract bool IsInteractable();
         public GameObject GetGameObject()
         {

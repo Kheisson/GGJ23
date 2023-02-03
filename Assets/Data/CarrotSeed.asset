@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   veggeyName: carrotSeed
   veggeySprite: {fileID: 21300000, guid: 1fbdfb9bf6c2e4397a1d62eed589ec1f, type: 3}
-  veggeyPrefab: {fileID: 0}
+  veggeyPrefab: {fileID: 7005720867004407576, guid: 83bc734c3b2604921b253168d4a4050f,
+    type: 3}
