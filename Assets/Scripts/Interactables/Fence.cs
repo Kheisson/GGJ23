@@ -20,7 +20,8 @@ namespace Interactables
 
         public override bool IsInteractable()
         {
-            return true;
+            // If the animation is playing, the fence is not interactable
+            return _animator.GetCurrentAnimatorStateInfo(0).length >= 1;
         }
     }
 }

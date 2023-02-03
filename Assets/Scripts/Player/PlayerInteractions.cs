@@ -1,33 +1,45 @@
+using System;
 using Interactables;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerInteractions : MonoBehaviour
+    public class PlayerInteractions : IPlayerComponent
     {
-        [SerializeField] private float interactionRange = 1f;
-        [SerializeField] private LayerMask interactableLayer;
-        private Transform _transform;
+        private const float INTERACTION_RANGE = 1f;
+        private readonly LayerMask _interactableLayer;
+        private readonly Player _player;
         private IInteractable _currentInteractable;
 
-        private void Awake()
+        public event Action<IInteractable> OnInteractEvent;
+
+        public PlayerInteractions(Player player, LayerMask interactableLayer)
         {
-            _transform = transform;
+            _interactableLayer = interactableLayer;
+            _player = player;
         }
 
-        // This method is called by the Input System
-        public void OnInteract()
-        {
-            Debug.Log("Interact");
 
-            if (!Physics.Raycast(_transform.position, _transform.forward, out RaycastHit hitInfo, interactionRange, interactableLayer))
+        public void Interact()
+        {
+
+            if (!Physics.Raycast(_player.PlayerTransform.position, _player.PlayerTransform.forward, out RaycastHit hitInfo, INTERACTION_RANGE, _interactableLayer))
             {
                 return;
             }
 
-            Debug.Log(hitInfo.transform.name);
             _currentInteractable = hitInfo.collider.GetComponent<IInteractable>();
-            _currentInteractable.Interact();
+
+            if (_currentInteractable.IsInteractable())
+            {
+                _currentInteractable.Interact();
+                OnInteractEvent?.Invoke(_currentInteractable);
+            }
+        }
+
+        public void OnUpdate()
+        {
+            //nothing to do here
         }
     }
 }
