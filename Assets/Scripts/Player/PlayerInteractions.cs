@@ -10,6 +10,7 @@ namespace Player
         private readonly LayerMask _interactableLayer;
         private readonly Player _player;
         private IInteractable _currentInteractable;
+        private RaycastHit _selectedInteractable;
 
         public event Action<IInteractable> OnInteractEvent;
 
@@ -22,14 +23,10 @@ namespace Player
 
         public void Interact()
         {
-
-            if (!Physics.Raycast(_player.PlayerTransform.position, _player.PlayerTransform.forward, out RaycastHit hitInfo, INTERACTION_RANGE, _interactableLayer))
-            {
-                return;
-            }
-
-            _currentInteractable = hitInfo.collider.GetComponent<IInteractable>();
-
+            if (_selectedInteractable.collider == null) return;
+            
+            _currentInteractable = _selectedInteractable.collider.GetComponent<IInteractable>();
+            
             if (_currentInteractable.IsInteractable())
             {
                 _currentInteractable.Interact();
@@ -39,7 +36,10 @@ namespace Player
 
         public void OnUpdate()
         {
-            //nothing to do here
+            if (!Physics.Raycast(_player.PlayerTransform.position, _player.PlayerTransform.forward, out _selectedInteractable, INTERACTION_RANGE, _interactableLayer))
+            {
+                return;
+            }
         }
     }
 }
