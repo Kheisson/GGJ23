@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Interactables;
 
 public class PlayerSelectorBox : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class PlayerSelectorBox : MonoBehaviour
     {
         collisionHappening = true;
         collidingObject = other.gameObject;
+        collidingObject.GetComponent<InteractableObject>().highlightObject();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        collidingObject.GetComponent<InteractableObject>().unhighlightObject();
         collisionHappening = false;
         collidingObject = null;
     }

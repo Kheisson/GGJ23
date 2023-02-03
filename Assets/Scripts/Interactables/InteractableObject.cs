@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public abstract class InteractableObject : MonoBehaviour, IInteractable
+    public class InteractableObject : MonoBehaviour, IInteractable
     {
         [SerializeField] protected Material highlightMaterial;
         protected Material OriginalMaterial;
         protected MeshRenderer MeshRenderer;
         protected EInteractableType InteractableType;
 
-        public abstract void Interact(bool isLeftHandEmpty);
-        public abstract bool IsInteractable();
+        public virtual void Interact(bool isLeftHandEmpty) { }
+        public virtual bool IsInteractable() { return true; }
         public GameObject GetGameObject()
         {
             return this.gameObject;
@@ -21,22 +21,12 @@ namespace Interactables
             return InteractableType;
         }
         
-        private void OnCollisionEnter(Collision collision)
+        public void highlightObject()
         {
             MeshRenderer.material = highlightMaterial;
         }
 
-        private void OnCollisionExit(Collision other)
-        {
-            MeshRenderer.material = OriginalMaterial;
-        }
-
-        private void OnTriggerEnter(Collider collision)
-        {
-            MeshRenderer.material = highlightMaterial;
-        }
-
-        private void OnTriggerExit(Collider other)
+        public void unhighlightObject()
         {
             MeshRenderer.material = OriginalMaterial;
         }

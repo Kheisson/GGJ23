@@ -11,7 +11,7 @@ namespace Player
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private LayerMask interactableLayer;
         [SerializeField] private Grid grid;
-        [SerializeField] private GameObject playerSelectorBoxPrefab;
+        [SerializeField] private PlayerSelectorBox playerSelectorBox;
 
         private PlayerMovement _playerMovement;
         private PlayerAnimation _playerAnimation;
@@ -22,7 +22,7 @@ namespace Player
         private ProjectCucamba _projectCucamba;
         private Vector3Int interactingCell;
         private Vector3 gridOffset;
-        private GameObject playerSelectorBox;
+        
 
         public Transform PlayerTransform => _transform;
         
@@ -39,10 +39,9 @@ namespace Player
             _equipmentManager = GetComponent<EquipmentManager>();
             _playerMovement = new PlayerMovement(this);
             _playerAnimation = new PlayerAnimation(playerAnimator);
-            playerSelectorBox = Instantiate(playerSelectorBoxPrefab, grid.CellToWorld(interactingCell) + gridOffset, Quaternion.identity);
             gridOffset = new Vector3(grid.cellSize.x / 2, 0, -grid.cellSize.y / 2);
             interactingCell = grid.WorldToCell(transform.position + transform.forward);
-            _playerInteractions = new PlayerInteractions(this, interactableLayer, playerSelectorBox.GetComponent<PlayerSelectorBox>());
+            _playerInteractions = new PlayerInteractions(this, interactableLayer, playerSelectorBox);
             
             
             

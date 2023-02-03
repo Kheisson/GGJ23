@@ -11,6 +11,7 @@ namespace Interactables {
 
         private void Awake()
         {
+            InteractableType = EInteractableType.Land;
             status = Status.EMPTY;
             MeshRenderer = GetComponentInChildren<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
