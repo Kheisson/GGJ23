@@ -7,12 +7,18 @@ namespace Interactables
         [SerializeField] protected Material highlightMaterial;
         protected Material OriginalMaterial;
         protected MeshRenderer MeshRenderer;
-        
+        protected EInteractableType InteractableType;
+
         public abstract void Interact();
         public abstract bool IsInteractable();
         public GameObject GetGameObject()
         {
             return this.gameObject;
+        }
+        
+        public EInteractableType GetInteractableType()
+        {
+            return InteractableType;
         }
         
         private void OnCollisionEnter(Collision collision)

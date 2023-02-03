@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class ToolContainer : InteractableObject
+    public class SeedContainer : InteractableObject
     {
         private Animator _animator;
         private readonly int _rattleHash = Animator.StringToHash("Rattle");
@@ -12,6 +12,7 @@ namespace Interactables
             _animator = GetComponent<Animator>();
             MeshRenderer = GetComponent<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
+            InteractableType = EInteractableType.SeedBox;
         }
 
         public override void Interact()
