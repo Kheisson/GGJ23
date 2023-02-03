@@ -10,6 +10,8 @@ namespace Player
     {
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private LayerMask interactableLayer;
+        [SerializeField] private Grid grid;
+        [SerializeField] private GameObject playerSelectorBoxPrefab;
 
         private PlayerMovement _playerMovement;
         private PlayerAnimation _playerAnimation;

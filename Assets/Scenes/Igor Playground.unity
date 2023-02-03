@@ -1692,6 +1692,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 22672112719300039, guid: c088953430b9143d7ad94e615754dcf2,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1017357622}
+    - target: {fileID: 22672112719300039, guid: c088953430b9143d7ad94e615754dcf2,
+        type: 3}
+      propertyPath: playerSelectorBoxPrefab
+      value: 
+      objectReference: {fileID: 9032317107841647138, guid: 9e1384a27ba7cbe4491fc5bc3826e14a,
+        type: 3}
     - target: {fileID: 800335089421606663, guid: c088953430b9143d7ad94e615754dcf2,
         type: 3}
       propertyPath: m_RootOrder
