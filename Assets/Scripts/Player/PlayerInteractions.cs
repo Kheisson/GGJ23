@@ -23,7 +23,7 @@ namespace Player
         }
 
 
-        public void Interact()
+        public void Interact(bool isLeftHandEmpty)
         {
             if (playerSelectorBox.getCollidingObject() == null) return;
             
@@ -31,7 +31,7 @@ namespace Player
             
             if (_currentInteractable.IsInteractable())
             {
-                _currentInteractable.Interact();
+                _currentInteractable.Interact(isLeftHandEmpty);
                 OnInteractEvent?.Invoke(_currentInteractable);
             }
         }

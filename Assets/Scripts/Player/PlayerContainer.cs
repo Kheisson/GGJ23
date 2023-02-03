@@ -1,4 +1,5 @@
 using System;
+using Equipment;
 using Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,23 +10,31 @@ namespace Player
     {
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private LayerMask interactableLayer;
-        [SerializeField] private Grid grid;
-        [SerializeField] private GameObject playerSelectorBoxPrefab;
 
         private PlayerMovement _playerMovement;
         private PlayerAnimation _playerAnimation;
-        public PlayerInteractions _playerInteractions;
+        private PlayerInteractions _playerInteractions;
         private Transform _transform;
         private IPlayerComponent[] _playerComponents;
+        private EquipmentManager _equipmentManager;
+        private ProjectCucamba _projectCucamba;
         private Vector3Int interactingCell;
         private Vector3 gridOffset;
         private GameObject playerSelectorBox;
 
         public Transform PlayerTransform => _transform;
         
+        
         private void Awake()
         {
             _transform = transform;
+            
+            //Movement by Input System C# class.
+            _projectCucamba = new ProjectCucamba();
+            _projectCucamba.Player.Enable();
+            _projectCucamba.Player.Fire.performed += ctx => Fire();
+            
+            _equipmentManager = GetComponent<EquipmentManager>();
             _playerMovement = new PlayerMovement(this);
             _playerAnimation = new PlayerAnimation(playerAnimator);
             playerSelectorBox = Instantiate(playerSelectorBoxPrefab, grid.CellToWorld(interactingCell) + gridOffset, Quaternion.identity);
@@ -61,7 +70,14 @@ namespace Player
         
         private void OnInteract()
         {
-            _playerInteractions.Interact();
+            _playerInteractions.Interact(_equipmentManager.IsLeftHandEmpty);
+            _playerAnimation.OnFire(_equipmentManager.IsRightHandEmpty, _equipmentManager.CurrentWorkItem);
+        }
+
+        
+        private void Fire()
+        {
+            //_playerAnimation.OnFire(_equipmentManager.IsRightHandEmpty);
         }
 
         public void AddInteractListener(Action<IInteractable> action)

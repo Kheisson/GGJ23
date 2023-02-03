@@ -15,7 +15,7 @@ namespace Interactables {
             MeshRenderer = GetComponentInChildren<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
         }
-        public override void Interact()
+        public override void Interact(bool isLeftHandEmpty)
         {
             if (status < Status.ROTTEN) { status += 1; }
             Debug.Log(status);
