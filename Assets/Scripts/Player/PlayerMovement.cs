@@ -7,11 +7,11 @@ namespace Player
         private const float MOVEMENT_SPEED = 5f;
         private const float ROTATION_SPEED = 10f;
         private Vector2 _movement;
-        private readonly Player _player;
+        private readonly PlayerContainer _playerContainer;
 
-        public PlayerMovement(Player player)
+        public PlayerMovement(PlayerContainer playerContainer)
         {
-            _player = player;
+            _playerContainer = playerContainer;
         }
 
         public void OnUpdate()
@@ -25,8 +25,8 @@ namespace Player
 
             if (movementTransform.magnitude == 0) return;
             
-            _player.PlayerTransform.position += movementTransform * (Time.deltaTime * MOVEMENT_SPEED);
-            _player.PlayerTransform.forward = Vector3.Slerp(_player.transform.forward, movementTransform, Time.deltaTime * ROTATION_SPEED);
+            _playerContainer.PlayerTransform.position += movementTransform * (Time.deltaTime * MOVEMENT_SPEED);
+            _playerContainer.PlayerTransform.forward = Vector3.Slerp(_playerContainer.transform.forward, movementTransform, Time.deltaTime * ROTATION_SPEED);
         }
 
         public void SetMovement(Vector2 value)

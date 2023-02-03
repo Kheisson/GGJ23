@@ -1,10 +1,11 @@
 using System;
+using Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class PlayerContainer : MonoBehaviour
     {
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private LayerMask interactableLayer;
@@ -49,6 +50,16 @@ namespace Player
         private void OnInteract()
         {
             _playerInteractions.Interact();
+        }
+
+        public void AddInteractListener(Action<IInteractable> action)
+        {
+            _playerInteractions.OnInteractEvent += action;
+        }
+        
+        public void RemoveInteractListener(Action<IInteractable> action)
+        {
+            _playerInteractions.OnInteractEvent -= action;
         }
 
 

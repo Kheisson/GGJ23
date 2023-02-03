@@ -240,4 +240,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e687a630c048a9b536d0580d8a6ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: cc0a1b05af20c407ca1f843fe074f08c, type: 2}
