@@ -30,5 +30,15 @@ namespace Interactables
         {
             MeshRenderer.material = OriginalMaterial;
         }
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            MeshRenderer.material = highlightMaterial;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            MeshRenderer.material = OriginalMaterial;
+        }
     }
 }

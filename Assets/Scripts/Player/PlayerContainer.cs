@@ -9,13 +9,18 @@ namespace Player
     {
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private LayerMask interactableLayer;
-        
+        [SerializeField] private Grid grid;
+        [SerializeField] private GameObject playerSelectorBoxPrefab;
+
         private PlayerMovement _playerMovement;
         private PlayerAnimation _playerAnimation;
         public PlayerInteractions _playerInteractions;
         private Transform _transform;
         private IPlayerComponent[] _playerComponents;
-        
+        private Vector3Int interactingCell;
+        private Vector3 gridOffset;
+        private GameObject playerSelectorBox;
+
         public Transform PlayerTransform => _transform;
         
         private void Awake()
@@ -23,7 +28,12 @@ namespace Player
             _transform = transform;
             _playerMovement = new PlayerMovement(this);
             _playerAnimation = new PlayerAnimation(playerAnimator);
-            _playerInteractions = new PlayerInteractions(this, interactableLayer);
+            playerSelectorBox = Instantiate(playerSelectorBoxPrefab, grid.CellToWorld(interactingCell) + gridOffset, Quaternion.identity);
+            gridOffset = new Vector3(grid.cellSize.x / 2, 0, -grid.cellSize.y / 2);
+            interactingCell = grid.WorldToCell(transform.position + transform.forward);
+            _playerInteractions = new PlayerInteractions(this, interactableLayer, playerSelectorBox.GetComponent<PlayerSelectorBox>());
+            
+            
             
             _playerComponents = new IPlayerComponent[]
             {
@@ -35,6 +45,8 @@ namespace Player
         
         private void Update()
         {
+            interactingCell = grid.WorldToCell(transform.position + transform.forward);
+            playerSelectorBox.transform.position = grid.CellToWorld(interactingCell) + gridOffset;
             foreach (var playerComponent in _playerComponents)
             {
                 playerComponent.OnUpdate();

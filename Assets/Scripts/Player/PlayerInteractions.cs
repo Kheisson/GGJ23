@@ -11,21 +11,23 @@ namespace Player
         private readonly PlayerContainer _playerContainer;
         private IInteractable _currentInteractable;
         private RaycastHit _selectedInteractable;
+        private PlayerSelectorBox playerSelectorBox;
 
         public event Action<IInteractable> OnInteractEvent;
 
-        public PlayerInteractions(PlayerContainer playerContainer, LayerMask interactableLayer)
+        public PlayerInteractions(PlayerContainer playerContainer, LayerMask interactableLayer, PlayerSelectorBox playerSelectorBox)
         {
             _interactableLayer = interactableLayer;
             _playerContainer = playerContainer;
+            this.playerSelectorBox = playerSelectorBox;
         }
 
 
         public void Interact()
         {
-            if (_selectedInteractable.collider == null) return;
+            if (playerSelectorBox.getCollidingObject() == null) return;
             
-            _currentInteractable = _selectedInteractable.collider.GetComponent<IInteractable>();
+            _currentInteractable = playerSelectorBox.getCollidingObject().GetComponent<IInteractable>();
             
             if (_currentInteractable.IsInteractable())
             {

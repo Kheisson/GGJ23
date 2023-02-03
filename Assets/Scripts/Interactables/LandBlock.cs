@@ -12,6 +12,8 @@ namespace Interactables {
         private void Awake()
         {
             status = Status.EMPTY;
+            MeshRenderer = GetComponentInChildren<MeshRenderer>();
+            OriginalMaterial = MeshRenderer.material;
         }
         public override void Interact()
         {
