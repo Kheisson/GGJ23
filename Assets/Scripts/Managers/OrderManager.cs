@@ -37,6 +37,8 @@ namespace Managers
                 if (order == null)
                 {
                     orders.Remove(order);
+
+                    return;
                 }
                 
                 if (order.TryCompleteOrder(veggy, onOrderComplete))

@@ -50,7 +50,7 @@ namespace UI
             
             for (int i = 0; i < _orderItems.Length; i++)
             {
-                if(_orderItems[i] != null && _orderItems[i].gameObject.activeInHierarchy == false)
+                if(_orderItems[i] == null || _orderItems[i].gameObject.activeInHierarchy == false)
                 {
                     continue;
                 }
@@ -76,12 +76,17 @@ namespace UI
             _orderTimer.StartTimer();
             _orderTimer.OnTimerEnd += OnOrderTimerEnd;
         }
-        
+
+        private void OnDestroy()
+        {
+            _orderTimer.OnTimerEnd -= OnOrderTimerEnd;
+        }
+
         private void CheckOrderComplete()
         {
             for (int i = 0; i < _orderItems.Length; i++)
             {
-                if (_orderItems[i] == null) continue;
+                if (_orderItems[i] == null || !_orderItems[i].gameObject.activeInHierarchy) continue;
                 
                 if (!_orderItems[i].OrderComplete)
                 {
