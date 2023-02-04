@@ -14,7 +14,7 @@ namespace UI
         private Timer _orderTimer;
         private int _orderSize;
 
-        public float OrderTimeout { get; set; } = 30f;
+        public float OrderTimeout { get; set; } = 120f;
 
         public void FillOrder(VeggySo[] veggies)
         {
@@ -47,7 +47,7 @@ namespace UI
             
             for (int i = 0; i < _orderItems.Length; i++)
             {
-                if(_orderItems[i] == null || _orderItems[i].gameObject.activeInHierarchy == false)
+                if(_orderItems[i] == null || _orderItems[i].gameObject.activeInHierarchy == false || _orderItems[i].OrderComplete)
                 {
                     continue;
                 }
