@@ -1,4 +1,3 @@
-using System;
 using Equipment;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,13 +27,13 @@ namespace Player
             
             switch (workItem.Id)
             {
-                case 0:
+                case 0: //Shovel
                     _animator.SetTrigger(_fireHash);
                     break;
-                case 1:
+                case 1: //Watering Can
                     workItem.EnableEffect();
                     break;
-                case 2:
+                case 2: //Hands
                     break;
             }
         }

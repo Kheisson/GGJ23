@@ -1697,12 +1697,6 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 1017357622}
-    - target: {fileID: 22672112719300039, guid: c088953430b9143d7ad94e615754dcf2,
-        type: 3}
-      propertyPath: playerSelectorBoxPrefab
-      value: 
-      objectReference: {fileID: 9032317107841647138, guid: 9e1384a27ba7cbe4491fc5bc3826e14a,
-        type: 3}
     - target: {fileID: 800335089421606663, guid: c088953430b9143d7ad94e615754dcf2,
         type: 3}
       propertyPath: m_RootOrder
@@ -1757,21 +1751,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3146894101005195116, guid: c088953430b9143d7ad94e615754dcf2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3146894101005195116, guid: c088953430b9143d7ad94e615754dcf2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3146894101005195116, guid: c088953430b9143d7ad94e615754dcf2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
