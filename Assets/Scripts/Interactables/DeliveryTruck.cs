@@ -1,4 +1,3 @@
-using System;
 using Equipment;
 using HoldableItems;
 using Interactables;
@@ -33,8 +32,16 @@ public class DeliveryTruck : InteractableObject
         return _orderManager.HasOrdersOnScreen();
     }
 
-    public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
+    public override void Interact(WorkItem workItem, HoldableItem leftHandItem)
     {
+        if (leftHandItem == null)
+        {
+            Debug.Log("Left hand is empty");
+
+            return;
+        }
+        
+        _orderManager.TryCompleteOrder(leftHandItem.CurrentVeggy);
         Debug.Log("Interacting with delivery truck");
     }
 }

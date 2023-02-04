@@ -40,18 +40,22 @@ namespace UI
             orderTimeLeftSlider.value = _orderTimer.GetTime();
         }
 
-        private void TryCompleteOrder(VeggySo veggy)
+        public bool TryCompleteOrder(VeggySo veggy)
         {
+            var orderComplete = false;
+            
             for (int i = 0; i < _orderItems.Length; i++)
             {
                 if (_orderItems[i].Veggy.veggeyName.Equals(veggy.veggeyName))
                 {
                     _orderItems[i].Complete();
+                    orderComplete = true;
                     break;
                 }
             }
             
             CheckOrderComplete();
+            return orderComplete;
         }
 
         private void StartCountdown()

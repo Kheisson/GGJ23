@@ -18,6 +18,22 @@ namespace Managers
         {
             return orders.Count > 0;
         }
+        
+        public void TryCompleteOrder(VeggySo veggy)
+        {
+            if (orders.Count == 0)
+            {
+                return;
+            }
+            
+            foreach (var order in orders)
+            {
+                if (order.TryCompleteOrder(veggy))
+                {
+                    break;
+                }
+            }
+        }
 
         private void Start()
         {
