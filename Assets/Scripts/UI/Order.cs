@@ -18,6 +18,7 @@ namespace UI
 
         public event Action orderCompleted;
         public event Action orderFailed;
+        public float OrderTimeout { get; set; } = 120f;
 
         public float OrderTimeout { get; set; } = 70f;
 
@@ -58,7 +59,7 @@ namespace UI
             
             for (int i = 0; i < _orderItems.Length; i++)
             {
-                if(_orderItems[i] == null || _orderItems[i].gameObject.activeInHierarchy == false)
+                if(_orderItems[i] == null || _orderItems[i].gameObject.activeInHierarchy == false || _orderItems[i].OrderComplete)
                 {
                     continue;
                 }
