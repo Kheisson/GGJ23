@@ -10,6 +10,9 @@ namespace Player
         private readonly int _speedHash = Animator.StringToHash("Speed");
         private readonly int _fireHash = Animator.StringToHash("Fire");
 
+        
+        public event PlayerContainer.userAction usedShovel;
+        public event PlayerContainer.userAction usedWaterCan;
         public PlayerAnimation(Animator animator)
         {
             _animator = animator;
@@ -28,9 +31,11 @@ namespace Player
             switch (workItem.Type)
             {
                 case WorkItem.ItemType.SHOVEL: //Shovel
+                    usedShovel?.Invoke();
                     _animator.SetTrigger(_fireHash);
                     break;
                 case WorkItem.ItemType.WATERCAN: //Watering Can
+                    usedWaterCan?.Invoke();
                     workItem.EnableEffect();
                     break;
                 case WorkItem.ItemType.HANDS: //Hands

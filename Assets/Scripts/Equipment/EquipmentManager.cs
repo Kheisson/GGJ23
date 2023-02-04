@@ -2,6 +2,7 @@ using HoldableItems;
 using Interactables;
 using Managers;
 using Player;
+using System;
 using UI;
 using UnityEngine;
 
@@ -13,7 +14,9 @@ namespace Equipment
         [SerializeField] private Transform RightHand;
         [SerializeField] private PlayerContainer playerContainer;
         [SerializeField] private WorkItem[] workItems;
-        
+
+        public event Action itemPickUp;
+
         private WorkItem _currentWorkItem;
         public HoldableItem ItemInLeftHand => LeftHand.GetComponentInChildren<HoldableItem>();
         public bool IsRightHandEmpty => RightHand.childCount == 0;
@@ -55,7 +58,8 @@ namespace Equipment
                 Debug.Log("Left hand is full");
                 return;
             }
-            
+
+            itemPickUp?.Invoke();
             var seedContainer = item.GetComponent<SeedContainer>();
             var seed = Instantiate(seedContainer.SeedPrefab, LeftHand, true);
             ItemInLeftHand.CurrentVeggy = seedContainer.VeggySo;
@@ -66,7 +70,8 @@ namespace Equipment
         {
             var land = vegetable.GetComponent<LandBlock>();
             if (land == null || LeftHand.childCount != 0) return;
-            
+
+            itemPickUp?.Invoke();
             var veggie = Instantiate(land.CropObject, LeftHand, true);
             ItemInLeftHand.CurrentVeggy = land.CurrentVeggyOnLand;
             ResetPositionAndRotation(veggie.transform);

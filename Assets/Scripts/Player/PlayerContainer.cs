@@ -25,8 +25,9 @@ namespace Player
         
 
         public Transform PlayerTransform => _transform;
-        
-        
+        public delegate void userAction();
+
+
         private void Awake()
         {
             _transform = transform;
@@ -91,10 +92,28 @@ namespace Player
             _playerInteractions.OnInteractEvent -= action;
         }
 
+        public void AddUsedShovelListener(userAction action)
+        {
+            _playerAnimation.usedShovel += action;
+        }
 
+        public void RemoveUsedShovelListener(userAction action)
+        {
+            _playerAnimation.usedShovel -= action;
+        }
+
+        public void AddUsedWaterCanListener(userAction action)
+        {
+            _playerAnimation.usedWaterCan += action;
+        }
+
+        public void RemoveUsedWaterCanListener(userAction action)
+        {
+            _playerAnimation.usedWaterCan -= action;
+        }
         #region Debug
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;

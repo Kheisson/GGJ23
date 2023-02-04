@@ -2,6 +2,7 @@ using Equipment;
 using HoldableItems;
 using Interactables;
 using Managers;
+using System;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ public class DeliveryTruck : InteractableObject
     private OrderManager _orderManager;
     private HoldableItem _holdableItem;
 
+    public event Action barrelPlaced;
     private void Awake()
     {
         MeshRenderer = transform.GetChild(0).GetComponentInChildren<MeshRenderer>();
@@ -43,7 +45,7 @@ public class DeliveryTruck : InteractableObject
 
             return;
         }
-        
+
         _holdableItem = leftHandItem;
         _orderManager.TryCompleteOrder(leftHandItem.CurrentVeggy, OrderCompleted);
         Debug.Log("Interacting with delivery truck");
@@ -62,6 +64,7 @@ public class DeliveryTruck : InteractableObject
         {
             if (!barrel.activeSelf)
             {
+                barrelPlaced?.Invoke();
                 barrel.SetActive(true);
                 break;
             }
