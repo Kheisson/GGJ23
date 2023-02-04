@@ -14,6 +14,9 @@ namespace UI
         private Timer _orderTimer;
         private int _orderSize;
 
+        public event Action orderCompleted;
+        public event Action orderFailed;
+
         public float OrderTimeout { get; set; } = 30f;
 
         public void FillOrder(VeggySo[] veggies)
@@ -85,13 +88,15 @@ namespace UI
                     return;
                 }
             }
-            
+
+            orderCompleted?.Invoke();
             Debug.Log("Order Complete");
             if(gameObject) Destroy(gameObject);
         }
         
         private void OnOrderTimerEnd()
         {
+            orderFailed?.Invoke();
             Debug.Log("Order Failed");
             Destroy(gameObject);
         }

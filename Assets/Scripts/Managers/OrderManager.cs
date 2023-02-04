@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Equipment;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Managers
 {
@@ -11,6 +12,10 @@ namespace Managers
         [SerializeField] private List<Order> orders;
         [SerializeField] private VeggySo[] possibleVeggies;
         [SerializeField] private Order orderPrefab;
+        [SerializeField] private Text scoreCounter;
+        [SerializeField] private int orderCompleteReward;
+        [SerializeField] private int orderFailedReduction;
+
         private const int MAX_ORDERS_ON_SCREEN = 3;
         private const int START_TAKING_OVER_TIME = 10;
         private const int INTERVAL_BETWEEN_ORDERS = 20;
