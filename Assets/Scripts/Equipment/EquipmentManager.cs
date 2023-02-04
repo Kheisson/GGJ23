@@ -46,13 +46,16 @@ namespace Equipment
         
         private void EquipSeedBox(GameObject item)
         {
-            if (IsLeftHandEmpty)
+            if (!IsLeftHandEmpty)
             {
-                seedHeldName = item.GetComponent<SeedContainer>().veggyName;
-                var seedBox = Instantiate(item.GetComponent<SeedContainer>().VeggyPrefab, LeftHand, true);
-                ResetPositionAndRotation(seedBox.transform);
+                Debug.Log("Left hand is full");
+                return;
             }
-            Debug.Log("Left hand is full");
+            
+            var seedContainer = item.GetComponent<SeedContainer>();
+            seedHeldName = seedContainer.veggyName;
+            var seedBox = Instantiate(seedContainer.VeggyPrefab, LeftHand, true);
+            ResetPositionAndRotation(seedBox.transform);
         }
 
         private void EquipWorkItem(int index)

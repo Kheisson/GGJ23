@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5886686047358442435}
   - component: {fileID: 7620516120293166728}
   - component: {fileID: 7620516120293166730}
+  - component: {fileID: 5215580169934629283}
   m_Layer: 6
   m_Name: GarbageCan
   m_TagString: Untagged
@@ -117,7 +118,7 @@ Transform:
   - {fileID: 8423983527715580062}
   - {fileID: 4910351739065958665}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &5886686047358442435
 BoxCollider:
@@ -138,7 +139,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.62266755, y: 1.060101, z: 0.7920253}
+  m_Size: {x: 0.5, y: 1, z: 0.7}
   m_Center: {x: -0.08593309, y: 0.48789033, z: 0.103987336}
 --- !u!95 &7620516120293166728
 Animator:
@@ -173,6 +174,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: cc0a1b05af20c407ca1f843fe074f08c, type: 2}
+--- !u!65 &5215580169934629283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808892557703836535}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.62266755, y: 1.060101, z: 0.7920253}
+  m_Center: {x: -0.08593309, y: 0.48789033, z: 0.103987336}
 --- !u!1 &6766196701012608832
 GameObject:
   m_ObjectHideFlags: 0

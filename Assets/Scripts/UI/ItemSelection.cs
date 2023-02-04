@@ -21,6 +21,8 @@ namespace UI
             
             if(_buttons.Length == 0) return;
             _uiManager = manager;
+
+            GameStartedSetup();
             
             foreach (var button in _buttons)
             {
@@ -37,6 +39,11 @@ namespace UI
 
             var index = Array.IndexOf(_buttons, buttonClicked);
             _uiManager.OnItemSelected(index);
+        }
+        
+        private void GameStartedSetup()
+        {
+            OnButtonClicked(_buttons[2]); //Select the empty hand work item on game start
         }
     }
 }
