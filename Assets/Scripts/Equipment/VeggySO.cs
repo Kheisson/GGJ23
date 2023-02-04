@@ -8,5 +8,6 @@ namespace Equipment
         public string veggeyName;
         public Sprite veggeySprite;
         public GameObject veggeyPrefab;
+        public GameObject seedPrefab;
     }
 }
