@@ -87,6 +87,7 @@ namespace Equipment
             var item = Instantiate(_currentWorkItem, RightHand, true).GetComponent<WorkItem>();
             ResetPositionAndRotation(item.transform);
             item.transform.localRotation = Quaternion.Euler(-90, 0, 90);
+            item.transform.localPosition = new Vector3(-0.2f, 0f, 0f);
             _currentWorkItem = item;
             
         }
