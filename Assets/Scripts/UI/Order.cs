@@ -20,8 +20,6 @@ namespace UI
         public event Action orderCompleted;
         public event Action orderFailed;
 
-        public float OrderTimeout { get; set; } = 70f;
-
         public void setParent(OrderManager orderManager) { 
             if (this.orderManager == null) 
             { 
