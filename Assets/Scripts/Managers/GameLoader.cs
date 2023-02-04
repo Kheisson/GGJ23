@@ -16,6 +16,11 @@ namespace Managers
         private const string MAIN_MENU_SCENE = "Main Menu";
         private const string START_BUTTON_TAG = "GameController";
 
+        private void Awake()
+        {
+            SceneManager.LoadScene(MAIN_MENU_SCENE, LoadSceneMode.Additive);
+        }
+
         private void Start()
         {
             GameObject.FindGameObjectWithTag(START_BUTTON_TAG)
