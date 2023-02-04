@@ -10,7 +10,7 @@ namespace Interactables
         private Animator _animator;
         private readonly int _rattleHash = Animator.StringToHash("Rattle");
 
-        public GameObject VeggyPrefab => veggySo.veggeyPrefab;
+        public GameObject SeedPrefab => veggySo.seedPrefab;
         public string veggyName => veggySo.veggeyName;
         
         private void Awake()
