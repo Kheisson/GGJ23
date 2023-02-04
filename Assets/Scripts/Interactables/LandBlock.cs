@@ -39,7 +39,7 @@ namespace Interactables {
                 if (cropObject != null)
                 {
                     InteractableType = EInteractableType.Land;
-                    status = Status.FERTILE;
+                    status = Status.EMPTY;
                     changeLandMesh(activateEmptyLand);
                     return cropObject;
                 }
