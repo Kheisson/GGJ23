@@ -1,3 +1,4 @@
+using Equipment;
 using UnityEngine;
 
 namespace Interactables
@@ -9,7 +10,7 @@ namespace Interactables
         protected MeshRenderer MeshRenderer;
         protected EInteractableType InteractableType;
 
-        public virtual void Interact(bool isLeftHandEmpty) { }
+        public virtual void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName) { }
         public virtual bool IsInteractable() { return true; }
         public GameObject GetGameObject()
         {

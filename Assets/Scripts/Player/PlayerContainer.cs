@@ -71,7 +71,7 @@ namespace Player
         
         private void OnInteract()
         {
-            _playerInteractions.Interact(_equipmentManager.IsLeftHandEmpty);
+            _playerInteractions.Interact(_equipmentManager.getCurrentWorkItem(), _equipmentManager.IsLeftHandEmpty, _equipmentManager.getSeedHeldName());
             _playerAnimation.OnFire(_equipmentManager.IsRightHandEmpty, _equipmentManager.CurrentWorkItem);
         }
 

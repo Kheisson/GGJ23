@@ -1,3 +1,4 @@
+using Equipment;
 using UnityEngine;
 
 namespace Interactables
@@ -15,7 +16,7 @@ namespace Interactables
             InteractableType = EInteractableType.GarbageCan;
         }
         
-        public override void Interact(bool isLeftHandEmpty)
+        public override void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
         {
             //Cannot throw trash if the left hand is empty
             if(isLeftHandEmpty) return;

@@ -14,6 +14,7 @@ namespace Equipment
         [SerializeField] private WorkItem[] workItems;
         
         private WorkItem _currentWorkItem;
+        private string seedHeldName;
         public bool IsLeftHandEmpty => LeftHand.childCount == 0;
         public bool IsRightHandEmpty => RightHand.childCount == 0;
         
@@ -22,15 +23,15 @@ namespace Equipment
         private void Start()
         {
             GameManager.Instance.OnUiLoadedEvent += RegisterListeners;
-            playerContainer.AddInteractListener(EquipItem);
+            playerContainer.AddInteractListener(onInteract);
         }
 
         private void OnDestroy()
         {
-            playerContainer.RemoveInteractListener(EquipItem);
+            playerContainer.RemoveInteractListener(onInteract);
         }
         
-        private void EquipItem(IInteractable interactable)
+        private void onInteract(IInteractable interactable)
         {
             switch (interactable.GetInteractableType())
             {
@@ -47,6 +48,7 @@ namespace Equipment
         {
             if (IsLeftHandEmpty)
             {
+                seedHeldName = item.GetComponent<SeedContainer>().veggyName;
                 var seedBox = Instantiate(item.GetComponent<SeedContainer>().VeggyPrefab, LeftHand, true);
                 ResetPositionAndRotation(seedBox.transform);
             }
@@ -75,6 +77,7 @@ namespace Equipment
         private void DestroyItemInLeftHand()
         {
             if (IsLeftHandEmpty) return;
+            seedHeldName = null;
             Destroy(LeftHand.GetChild(0).gameObject);
         }
         
@@ -82,5 +85,12 @@ namespace Equipment
         {
             uiManager.OnItemSelectedEvent += EquipWorkItem;
         }
+
+        public string getSeedHeldName()
+        {
+            return seedHeldName;
+        }
+
+        public WorkItem getCurrentWorkItem() { return CurrentWorkItem; }
     }
 }
