@@ -36,6 +36,10 @@ namespace Player
                 _currentInteractable.Interact(workItem, leftHandItem, seedHeldName);
                 OnInteractEvent?.Invoke(_currentInteractable);
             }
+            else
+            {
+                Debug.LogWarning($"{_currentInteractable.GetGameObject().name} is not interactable");
+            }
         }
 
         public void OnUpdate()
