@@ -5,10 +5,11 @@ namespace Equipment
 {
     public class WorkItem : MonoBehaviour
     {
-        [SerializeField] private int id;
+        public enum ItemType { SHOVEL, WATERCAN, HANDS }
+        [SerializeField] private ItemType type;
         [SerializeField] private ParticleSystem effect;
         private readonly WaitForSeconds _waitForSeconds = new WaitForSeconds(1f);
-        public int Id => id;
+        public ItemType Type => type;
         
         public void EnableEffect()
         {

@@ -1,4 +1,5 @@
 using Equipment;
+using HoldableItems;
 using UnityEngine;
 
 namespace Interactables
@@ -16,10 +17,10 @@ namespace Interactables
             InteractableType = EInteractableType.GarbageCan;
         }
         
-        public override void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
         {
             //Cannot throw trash if the left hand is empty
-            if(isLeftHandEmpty) return;
+            if(leftHandItem == null) return;
             
             _animator.SetTrigger(_twistHash);
         }

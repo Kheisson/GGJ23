@@ -1,3 +1,4 @@
+using HoldableItems;
 using Interactables;
 using Managers;
 using Player;
@@ -15,7 +16,7 @@ namespace Equipment
         
         private WorkItem _currentWorkItem;
         private string seedHeldName;
-        public bool IsLeftHandEmpty => LeftHand.childCount == 0;
+        public HoldableItem ItemInLeftHand => LeftHand.GetComponentInChildren<HoldableItem>();
         public bool IsRightHandEmpty => RightHand.childCount == 0;
         
         public WorkItem CurrentWorkItem => _currentWorkItem;
@@ -46,7 +47,7 @@ namespace Equipment
         
         private void EquipSeedBox(GameObject item)
         {
-            if (!IsLeftHandEmpty)
+            if (ItemInLeftHand != null)
             {
                 Debug.Log("Left hand is full");
                 return;
@@ -79,7 +80,7 @@ namespace Equipment
         
         private void DestroyItemInLeftHand()
         {
-            if (IsLeftHandEmpty) return;
+            if (ItemInLeftHand == null) return;
             seedHeldName = null;
             Destroy(LeftHand.GetChild(0).gameObject);
         }

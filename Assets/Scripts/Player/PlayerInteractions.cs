@@ -1,5 +1,6 @@
 using System;
 using Equipment;
+using HoldableItems;
 using Interactables;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Player
         }
 
 
-        public void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
+        public void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
         {
             if (playerSelectorBox.getCollidingObject() == null) return;
             
@@ -32,7 +33,7 @@ namespace Player
             
             if (_currentInteractable.IsInteractable())
             {
-                _currentInteractable.Interact(workItem, isLeftHandEmpty, seedHeldName);
+                _currentInteractable.Interact(workItem, leftHandItem, seedHeldName);
                 OnInteractEvent?.Invoke(_currentInteractable);
             }
         }

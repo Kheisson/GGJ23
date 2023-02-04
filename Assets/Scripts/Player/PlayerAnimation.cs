@@ -25,15 +25,15 @@ namespace Player
         {
             if(isRightHandEmpty) return;
             
-            switch (workItem.Id)
+            switch (workItem.Type)
             {
-                case 0: //Shovel
+                case WorkItem.ItemType.SHOVEL: //Shovel
                     _animator.SetTrigger(_fireHash);
                     break;
-                case 1: //Watering Can
+                case WorkItem.ItemType.WATERCAN: //Watering Can
                     workItem.EnableEffect();
                     break;
-                case 2: //Hands
+                case WorkItem.ItemType.HANDS: //Hands
                     break;
             }
         }

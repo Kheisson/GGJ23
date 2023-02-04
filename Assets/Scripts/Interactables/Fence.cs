@@ -1,4 +1,5 @@
 using Equipment;
+using HoldableItems;
 using UnityEngine;
 
 namespace Interactables
@@ -17,7 +18,7 @@ namespace Interactables
             InteractableType = EInteractableType.Door;
         }
 
-        public override void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
         {
             _animator.SetBool(_openHash, !_animator.GetBool(_openHash));
         }

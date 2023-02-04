@@ -1,4 +1,5 @@
 using Equipment;
+using HoldableItems;
 using UnityEngine;
 
 namespace Interactables
@@ -21,11 +22,11 @@ namespace Interactables
             GetComponentInChildren<SpriteRenderer>().sprite = veggySo.veggeySprite;
         }
         
-        public override void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
         {
             //Cannot grab a seed if the left hand is not empty
             Debug.Log("Interacted with seed Container");
-            if(!isLeftHandEmpty) return;
+            if(leftHandItem != null) return;
             
             _animator.SetTrigger(_rattleHash);
         }
