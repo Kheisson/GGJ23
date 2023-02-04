@@ -56,6 +56,7 @@ namespace UI
                 {
                     _orderItems[i].Complete();
                     orderComplete = true;
+
                     break;
                 }
             }
@@ -77,6 +78,8 @@ namespace UI
         {
             for (int i = 0; i < _orderItems.Length; i++)
             {
+                if (_orderItems[i] == null) continue;
+                
                 if (!_orderItems[i].OrderComplete)
                 {
                     return;
@@ -84,7 +87,7 @@ namespace UI
             }
             
             Debug.Log("Order Complete");
-            Destroy(gameObject);
+            if(gameObject) Destroy(gameObject);
         }
         
         private void OnOrderTimerEnd()

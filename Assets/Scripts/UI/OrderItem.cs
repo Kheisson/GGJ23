@@ -28,8 +28,8 @@ namespace UI
         
         public void Complete()
         {
-            _completeEffect.SetActive(true);
-            _orderComplete = true;
+            _completeEffect.SetActive(true); 
+            _orderComplete = true; 
             _veggy = null;
         }
     }

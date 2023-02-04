@@ -5,7 +5,6 @@ using Managers;
 using System;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class DeliveryTruck : InteractableObject
 {
