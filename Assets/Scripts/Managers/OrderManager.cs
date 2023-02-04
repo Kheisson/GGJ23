@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Equipment;
+using TMPro;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Managers
 {
@@ -12,9 +12,9 @@ namespace Managers
         [SerializeField] private List<Order> orders;
         [SerializeField] private VeggySo[] possibleVeggies;
         [SerializeField] private Order orderPrefab;
-        [SerializeField] private Text scoreCounter;
-        [SerializeField] private int orderCompleteReward;
-        [SerializeField] private int orderFailedReduction;
+        [SerializeField] private TextMeshProUGUI scoreCounter;
+        [SerializeField] private int orderCompleteReward = 100;
+        [SerializeField] private int orderFailedReduction = 20;
 
         private const int MAX_ORDERS_ON_SCREEN = 3;
         private const int START_TAKING_OVER_TIME = 10;
@@ -75,8 +75,34 @@ namespace Managers
             }
 
             var order = Instantiate(orderPrefab, transform);
+            order.setParent(this);
             order.FillOrder(possibleVeggies);
+            order.orderCompleted += increaseScore;
+            order.orderFailed += decreaseScore;
             orders.Add(order);
+        }
+
+        private void increaseScore()
+        {
+            int currScore;
+            int.TryParse(scoreCounter.text, out currScore);
+            currScore += orderCompleteReward;
+            scoreCounter.text = currScore.ToString();
+        }
+
+        private void decreaseScore()
+        {
+            int currScore;
+            int.TryParse(scoreCounter.text, out currScore);
+            currScore -= orderFailedReduction;
+            scoreCounter.text = currScore.ToString();
+        }
+
+        public void DestroyOrder(Order order)
+        {
+            order.orderCompleted -= increaseScore;
+            order.orderFailed -= decreaseScore;
+            Destroy(order.gameObject);
         }
     }
 }

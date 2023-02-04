@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 42839724}
   - component: {fileID: 42839723}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,6 +343,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a9d8ab10bf1854c5ca9dbe6e13b6c65b, type: 2}
   orderPrefab: {fileID: 6698198655871825832, guid: 30828835e904541e6b3fdedf2fb90da0,
     type: 3}
+  scoreCounter: {fileID: 42839723}
+  orderCompleteReward: 100
+  orderFailedReduction: 20
 --- !u!1 &335628975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1228,7 @@ GameObject:
   - component: {fileID: 2100240010}
   - component: {fileID: 2100240009}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DollarSymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

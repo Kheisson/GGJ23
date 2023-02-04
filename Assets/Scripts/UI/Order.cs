@@ -1,5 +1,6 @@
 using System;
 using Equipment;
+using Managers;
 using Timers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +14,19 @@ namespace UI
         [SerializeField] private Slider orderTimeLeftSlider;
         private Timer _orderTimer;
         private int _orderSize;
+        private OrderManager orderManager;
 
         public event Action orderCompleted;
         public event Action orderFailed;
 
-        public float OrderTimeout { get; set; } = 30f;
+        public float OrderTimeout { get; set; } = 70f;
 
+        public void setParent(OrderManager orderManager) { 
+            if (this.orderManager == null) 
+            { 
+                this.orderManager = orderManager;
+            }
+        }
         public void FillOrder(VeggySo[] veggies)
         {
             _orderSize = Random.Range(1, _orderItems.Length);
@@ -96,14 +104,14 @@ namespace UI
 
             orderCompleted?.Invoke();
             Debug.Log("Order Complete");
-            if(gameObject) Destroy(gameObject);
+            if (gameObject) orderManager.DestroyOrder(this);
         }
         
         private void OnOrderTimerEnd()
         {
             orderFailed?.Invoke();
             Debug.Log("Order Failed");
-            Destroy(gameObject);
+            orderManager.DestroyOrder(this);
         }
 
     }
