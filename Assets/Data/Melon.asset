@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926b493960c743dda152e763c21df734, type: 3}
+  m_Name: Melon
+  m_EditorClassIdentifier: 
+  veggeyName: Melon
+  veggeySprite: {fileID: 21300000, guid: 458b96fa7bc9e4c409f9b7f0b8bb2630, type: 3}
+  veggeyPrefab: {fileID: 303524594832598483, guid: 04da3d8b278c34204867de4961c50c14,
+    type: 3}

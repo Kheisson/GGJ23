@@ -14,7 +14,24 @@ namespace UI
         {
             GameManager.Instance.OnUiLoadedEvent += RegisterButtonListeners;
         }
-        
+
+        private void Update()
+        {
+            //check for keyboard keys 1-3 and select the corresponding item
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                OnButtonClicked(_buttons[0]);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                OnButtonClicked(_buttons[1]);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                OnButtonClicked(_buttons[2]);
+            }
+        }
+
         private void RegisterButtonListeners(UiManager manager)
         {
             _buttons = GetComponentsInChildren<Button>();
