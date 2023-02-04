@@ -51,12 +51,20 @@ namespace UI
                 {
                     continue;
                 }
-                
-                if (_orderItems[i].Veggy.veggeyName.Equals(veggy.veggeyName))
+
+                try
                 {
-                    _orderItems[i].Complete();
-                    orderComplete = true;
-                    break;
+                    if (_orderItems[i].Veggy.veggeyName.Equals(veggy.veggeyName))
+                    {
+                        _orderItems[i].Complete();
+                        orderComplete = true;
+
+                        break;
+                    }
+                }
+                catch (NullReferenceException e)
+                {
+                    Debug.Log($"veggy is rotten");
                 }
             }
             

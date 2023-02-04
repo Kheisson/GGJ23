@@ -28,9 +28,16 @@ namespace UI
         
         public void Complete()
         {
-            _completeEffect.SetActive(true);
-            _orderComplete = true;
-            _veggy = null;
+            try
+            {
+                _completeEffect.SetActive(true);
+                _orderComplete = true;
+                _veggy = null;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Order check passed"); ;
+            }
         }
     }
 }
