@@ -1,5 +1,6 @@
 using Equipment;
 using UnityEngine;
+using HoldableItems;
 
 namespace Interactables
 {
@@ -10,7 +11,7 @@ namespace Interactables
         protected MeshRenderer MeshRenderer;
         protected EInteractableType InteractableType;
 
-        public virtual void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName) { }
+        public virtual void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName) { }
         public virtual bool IsInteractable() { return true; }
         public GameObject GetGameObject()
         {

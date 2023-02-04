@@ -1,4 +1,5 @@
 using Equipment;
+using HoldableItems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,18 +19,19 @@ namespace Interactables {
             MeshRenderer = GetComponentInChildren<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
         }
-        public override void Interact(WorkItem workItem, bool isLeftHandEmpty, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
         {
             // if (status < Status.ROTTEN) { status += 1; }
+            Debug.Log("interacting with landblock");
             if (workItem == null) { return; }
             switch (status)
             {
-                case Status.EMPTY: if (workItem.Id == 0) { status = Status.FERTILE; } break;
-                case Status.FERTILE: if (seedHeldName != null) { plantSeed(seedHeldName); } break;
-                case Status.SEEDED: if(workItem.Id == 1) { status = Status.WET; } break;
+                case Status.EMPTY: if (workItem.Type == WorkItem.ItemType.SHOVEL ) { status = Status.FERTILE; } break;
+                case Status.FERTILE: if (leftHandItem != null && leftHandItem.Type == HoldableItem.ItemType.SEED) { plantSeed(leftHandItem, seedHeldName); } break;
+                case Status.SEEDED: if(workItem.Type == WorkItem.ItemType.WATERCAN) { status = Status.WET; } break;
                 case Status.WET: break;
                 case Status.RIPE:
-                case Status.ROTTEN: if(workItem.Id == 2) { status = Status.FERTILE; } break;
+                case Status.ROTTEN: if(workItem.Type == WorkItem.ItemType.HANDS) { status = Status.FERTILE; } break;
             }
             Debug.Log(status);
             return;
@@ -43,10 +45,11 @@ namespace Interactables {
 
         public Status getStatus() { return status; }
 
-        private void plantSeed(string seedName)
+        private void plantSeed(HoldableItem leftHandItem, string seedName)
         {
             Debug.Log("Planeted" + seedName);
             status = Status.SEEDED;
+            Destroy(leftHandItem.gameObject);
         }
     }
 }
