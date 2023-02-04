@@ -66,7 +66,7 @@ public class DeliveryTruck : InteractableObject
             }
         }
         
-        Debug.Log("Order completed");
+        Debug.Log($"Item delivered completed {_holdableItem.name}");
         Destroy(_holdableItem.gameObject);
     }
 }
