@@ -83,6 +83,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1795224361632699240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407466540431424646}
+  m_Layer: 6
+  m_Name: ReadyCropPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407466540431424646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795224361632699240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.496, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4581436920602630471}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5904046512857578600
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +147,7 @@ Transform:
   - {fileID: 171863979975179524}
   - {fileID: 6328956628583661934}
   - {fileID: 7834108983058613166}
+  - {fileID: 1407466540431424646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,7 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: cc0a1b05af20c407ca1f843fe074f08c, type: 2}
-  fertileLand: {fileID: 4300000, guid: aaff327437b0be14f9c6d1be9b411708, type: 3}
+  rottenCropMaterial: {fileID: 2100000, guid: 9d51c30794e8f8b4993a026bc430a8c1, type: 2}
+  wetFertiledLand: {fileID: 2100000, guid: bdc077c32e7f2f045a40e30959d907d7, type: 2}
+  FertiledLand: {fileID: 2100000, guid: 382e2b1b7fbf94945963320a17603c7c, type: 2}
+  player: {fileID: 0}
 --- !u!1001 &2754517599587536532
 PrefabInstance:
   m_ObjectHideFlags: 0

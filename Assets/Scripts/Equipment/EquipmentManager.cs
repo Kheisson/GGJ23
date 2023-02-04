@@ -42,6 +42,9 @@ namespace Equipment
                 case EInteractableType.GarbageCan:
                     DestroyItemInLeftHand();
                     break;
+                //case EInteractableType.LandVegitable:
+                //    EquipLandVegtiable(interactable.GetGameObject());
+                //    break;
             }
         }
         
@@ -59,6 +62,17 @@ namespace Equipment
             ResetPositionAndRotation(seed.transform);
         }
 
+        //private void EquipLandVegtiable(GameObject landVeggy)
+        //{
+        //    if (ItemInLeftHand != null)
+        //    {
+        //        Debug.Log("Left hand is full");
+        //        return;
+        //    }
+        //    GameObject vegitable = landVeggy.transform.GetChild(3).GetChild(0).gameObject;
+        //    vegitable.transform.parent = LeftHand;
+        //    ResetPositionAndRotation(vegitable.transform);
+        //}
         private void EquipWorkItem(int index)
         {
             _currentWorkItem = workItems[index];
@@ -90,5 +104,7 @@ namespace Equipment
         }
 
         public WorkItem getCurrentWorkItem() { return CurrentWorkItem; }
+
+        public Transform getLeftHandPos() { return LeftHand; }
     }
 }
