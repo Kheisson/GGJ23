@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,11 @@ namespace Managers
         private const int GAME_START_DELAY = 2;
         private const string MAIN_MENU_SCENE = "Main Menu";
         private const string START_BUTTON_TAG = "GameController";
+
+        private void Awake()
+        {
+            SceneManager.LoadScene(MAIN_MENU_SCENE, LoadSceneMode.Additive);
+        }
 
         private void Start()
         {
