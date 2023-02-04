@@ -16,11 +16,9 @@ namespace UI
         private int _orderSize;
         private OrderManager orderManager;
 
+        public float OrderTimeout { get; set; } = 120f;
         public event Action orderCompleted;
         public event Action orderFailed;
-        public float OrderTimeout { get; set; } = 120f;
-
-        public float OrderTimeout { get; set; } = 70f;
 
         public void setParent(OrderManager orderManager) { 
             if (this.orderManager == null) 
