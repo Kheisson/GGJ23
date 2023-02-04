@@ -16,6 +16,11 @@ namespace UI
             GameManager.Instance.OnUiLoadedEvent += RegisterButtonListeners;
         }
 
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnUiLoadedEvent -= RegisterButtonListeners;
+        }
+
         private void Update()
         {
             //check for keyboard keys 1-3 and select the corresponding item

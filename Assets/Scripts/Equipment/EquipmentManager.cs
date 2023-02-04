@@ -28,6 +28,7 @@ namespace Equipment
 
         private void OnDestroy()
         {
+            GameManager.Instance.OnUiLoadedEvent -= RegisterListeners;
             playerContainer.RemoveInteractListener(onInteract);
         }
         

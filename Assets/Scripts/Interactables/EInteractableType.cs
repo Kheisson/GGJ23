@@ -6,5 +6,6 @@ namespace Interactables
         Door,
         Land,
         GarbageCan,
+        DeliveryTruck,
     }
 }

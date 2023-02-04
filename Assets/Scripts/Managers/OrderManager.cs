@@ -13,6 +13,11 @@ namespace Managers
         private const int MAX_ORDERS_ON_SCREEN = 3;
         private const int START_TAKING_OVER_TIME = 10;
         private const int INTERVAL_BETWEEN_ORDERS = 20;
+        
+        public bool HasOrdersOnScreen()
+        {
+            return orders.Count > 0;
+        }
 
         private void Start()
         {
@@ -22,6 +27,18 @@ namespace Managers
         
         private void AddOrder()
         {
+            foreach (var selection in orders)
+            {
+                if (selection != null)
+                {
+                    continue;
+                }
+
+                orders.Remove(selection);
+                break;
+            }
+            
+            
             if (orders.Count >= MAX_ORDERS_ON_SCREEN)
             {
                 Debug.Log("Reached Max Orders");
