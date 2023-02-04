@@ -23,7 +23,7 @@ namespace Interactables
             GetComponentInChildren<SpriteRenderer>().sprite = veggySo.veggeySprite;
         }
         
-        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem)
         {
             //Cannot grab a seed if the left hand is not empty
             Debug.Log("Interacted with seed Container");

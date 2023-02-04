@@ -17,7 +17,7 @@ namespace Interactables
             InteractableType = EInteractableType.GarbageCan;
         }
         
-        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem)
         {
             //Cannot throw trash if the left hand is empty
             if(leftHandItem == null) return;

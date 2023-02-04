@@ -11,7 +11,7 @@ namespace Interactables
         protected MeshRenderer MeshRenderer;
         protected EInteractableType InteractableType;
 
-        public virtual void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName) { }
+        public virtual void Interact(WorkItem workItem, HoldableItem leftHandItem) { }
         public virtual bool IsInteractable() { return true; }
         public GameObject GetGameObject()
         {

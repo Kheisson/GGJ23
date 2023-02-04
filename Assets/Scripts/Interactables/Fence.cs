@@ -18,7 +18,7 @@ namespace Interactables
             InteractableType = EInteractableType.Door;
         }
 
-        public override void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
+        public override void Interact(WorkItem workItem, HoldableItem leftHandItem)
         {
             _animator.SetBool(_openHash, !_animator.GetBool(_openHash));
         }

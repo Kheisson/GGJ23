@@ -6,7 +6,7 @@ namespace Interactables
 {
     public interface IInteractable
     {
-        void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName);
+        void Interact(WorkItem workItem, HoldableItem leftHandItem);
         bool IsInteractable();
         GameObject GetGameObject();
         EInteractableType GetInteractableType();

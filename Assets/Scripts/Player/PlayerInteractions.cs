@@ -25,7 +25,7 @@ namespace Player
         }
 
 
-        public void Interact(WorkItem workItem, HoldableItem leftHandItem, string seedHeldName)
+        public void Interact(WorkItem workItem, HoldableItem leftHandItem)
         {
             if (playerSelectorBox.getCollidingObject() == null) return;
             
@@ -33,7 +33,7 @@ namespace Player
             
             if (_currentInteractable.IsInteractable())
             {
-                _currentInteractable.Interact(workItem, leftHandItem, seedHeldName);
+                _currentInteractable.Interact(workItem, leftHandItem);
                 OnInteractEvent?.Invoke(_currentInteractable);
             }
         }
