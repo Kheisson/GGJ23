@@ -7,6 +7,6 @@ namespace Interactables
         Land,
         GarbageCan,
         DeliveryTruck,
-        LandVegitable,
+        Vegetable,
     }
 }

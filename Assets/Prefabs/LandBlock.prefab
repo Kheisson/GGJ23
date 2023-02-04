@@ -149,7 +149,7 @@ Transform:
   - {fileID: 7834108983058613166}
   - {fileID: 1407466540431424646}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4592730051095444742
 BoxCollider:
@@ -188,7 +188,9 @@ MonoBehaviour:
   rottenCropMaterial: {fileID: 2100000, guid: 9d51c30794e8f8b4993a026bc430a8c1, type: 2}
   wetFertiledLand: {fileID: 2100000, guid: bdc077c32e7f2f045a40e30959d907d7, type: 2}
   FertiledLand: {fileID: 2100000, guid: 382e2b1b7fbf94945963320a17603c7c, type: 2}
-  player: {fileID: 0}
+  LeftHandPos: {fileID: 0}
+  growTimeout: 10
+  rotTimeout: 20
 --- !u!1001 &2754517599587536532
 PrefabInstance:
   m_ObjectHideFlags: 0

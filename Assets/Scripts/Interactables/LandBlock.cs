@@ -29,6 +29,21 @@ namespace Interactables {
         private bool[] activateSeededLand = { false, true, true, true };
         private bool[] activateEmptyLand = { true, false, false, true };
 
+        public GameObject CropObject
+        {
+            get
+            {
+                if (cropObject != null)
+                {
+                    InteractableType = EInteractableType.Land;
+
+                    return cropObject;
+                }
+
+                return null;
+            }
+        }
+
         private void Awake()
         {
             InteractableType = EInteractableType.Land;
@@ -89,7 +104,8 @@ namespace Interactables {
                     }
                     break;
                 case Status.WET: break;
-                case Status.RIPE: 
+                case Status.RIPE:
+                    break;
                 case Status.ROTTEN: 
                     if(workItem.Type == WorkItem.ItemType.HANDS)
                     {
@@ -141,7 +157,7 @@ namespace Interactables {
             growTimer.ResetTimer();
 
             status = Status.RIPE;
-            //InteractableType = EInteractableType.LandVegitable;
+            InteractableType = EInteractableType.Vegetable;
 
             children[1].GetComponent<MeshRenderer>().material = FertiledLand;
             MeshRenderer = GetComponentInChildren<MeshRenderer>();
@@ -149,7 +165,7 @@ namespace Interactables {
             changeLandMesh(activateFertileLand);
 
             cropObject = Instantiate(producePrefab, children[3].transform);
-
+            
             rotTimer.StartTimer();
         }
 

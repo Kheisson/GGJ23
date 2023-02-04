@@ -42,9 +42,9 @@ namespace Equipment
                 case EInteractableType.GarbageCan:
                     DestroyItemInLeftHand();
                     break;
-                //case EInteractableType.LandVegitable:
-                //    EquipLandVegtiable(interactable.GetGameObject());
-                //    break;
+                case EInteractableType.Vegetable:
+                    EquipVegetable(interactable.GetGameObject());
+                    break;
             }
         }
         
@@ -60,6 +60,16 @@ namespace Equipment
             var seed = Instantiate(seedContainer.SeedPrefab, LeftHand, true);
             ItemInLeftHand.CurrentVeggy = seedContainer.VeggySo;
             ResetPositionAndRotation(seed.transform);
+        }
+
+        private void EquipVegetable(GameObject vegetable)
+        {
+            var land = vegetable.GetComponent<LandBlock>();
+            if (land == null || LeftHand.childCount != 0) return;
+            
+            var veggie = Instantiate(land.CropObject, LeftHand, true);
+            ResetPositionAndRotation(veggie.transform);
+            Destroy(land.CropObject);
         }
 
         //private void EquipLandVegtiable(GameObject landVeggy)
