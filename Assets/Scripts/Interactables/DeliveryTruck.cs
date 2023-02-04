@@ -4,10 +4,13 @@ using Interactables;
 using Managers;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DeliveryTruck : InteractableObject
 {
+    [SerializeField] private GameObject[] barrels;
     private OrderManager _orderManager;
+    private HoldableItem _holdableItem;
 
     private void Awake()
     {
@@ -41,7 +44,30 @@ public class DeliveryTruck : InteractableObject
             return;
         }
         
-        _orderManager.TryCompleteOrder(leftHandItem.CurrentVeggy);
+        _holdableItem = leftHandItem;
+        _orderManager.TryCompleteOrder(leftHandItem.CurrentVeggy, OrderCompleted);
         Debug.Log("Interacting with delivery truck");
+    }
+
+    private void OrderCompleted(bool success)
+    {
+        if (!success)
+        {
+            Debug.Log("Item not accepted");
+            return;
+        }
+        
+        //check if there is a barrel that's inactive and activate it
+        foreach (var barrel in barrels)
+        {
+            if (!barrel.activeSelf)
+            {
+                barrel.SetActive(true);
+                break;
+            }
+        }
+        
+        Debug.Log("Order completed");
+        Destroy(_holdableItem.gameObject);
     }
 }

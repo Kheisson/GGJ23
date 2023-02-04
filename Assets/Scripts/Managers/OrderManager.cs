@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Equipment;
 using UI;
@@ -19,7 +20,7 @@ namespace Managers
             return orders.Count > 0;
         }
         
-        public void TryCompleteOrder(VeggySo veggy)
+        public void TryCompleteOrder(VeggySo veggy, Action<bool> onOrderComplete = null)
         {
             if (orders.Count == 0)
             {
@@ -28,7 +29,7 @@ namespace Managers
             
             foreach (var order in orders)
             {
-                if (order.TryCompleteOrder(veggy))
+                if (order.TryCompleteOrder(veggy, onOrderComplete))
                 {
                     break;
                 }

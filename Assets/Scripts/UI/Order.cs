@@ -1,3 +1,4 @@
+using System;
 using Equipment;
 using Timers;
 using UnityEngine;
@@ -40,12 +41,17 @@ namespace UI
             orderTimeLeftSlider.value = _orderTimer.GetTime();
         }
 
-        public bool TryCompleteOrder(VeggySo veggy)
+        public bool TryCompleteOrder(VeggySo veggy, Action<bool> onOrderComplete = null)
         {
             var orderComplete = false;
             
             for (int i = 0; i < _orderItems.Length; i++)
             {
+                if(_orderItems[i] != null && _orderItems[i].gameObject.activeInHierarchy == false)
+                {
+                    continue;
+                }
+                
                 if (_orderItems[i].Veggy.veggeyName.Equals(veggy.veggeyName))
                 {
                     _orderItems[i].Complete();
@@ -54,6 +60,7 @@ namespace UI
                 }
             }
             
+            onOrderComplete?.Invoke(orderComplete);
             CheckOrderComplete();
             return orderComplete;
         }

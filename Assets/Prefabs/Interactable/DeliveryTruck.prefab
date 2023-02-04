@@ -1277,7 +1277,7 @@ Transform:
   - {fileID: 3217418588421603294}
   - {fileID: 1279280880731189875}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 88.128, z: 0}
 --- !u!65 &5908999951757021312
 BoxCollider:
@@ -1334,6 +1334,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: cc0a1b05af20c407ca1f843fe074f08c, type: 2}
+  barrels:
+  - {fileID: 5845601437964229211}
+  - {fileID: 2084323375132918630}
+  - {fileID: 857864293310550332}
+  - {fileID: 5334995232652966013}
+  - {fileID: 7720435622077990274}
+  - {fileID: 7554411672873932779}
+  - {fileID: 9005941779781308925}
+  - {fileID: 7898797275259415746}
+  - {fileID: 279728733410027433}
+  - {fileID: 3448875695859825813}
+  - {fileID: 8538672532427831937}
+  - {fileID: 2037592332295652600}
+  - {fileID: 3602290026991712363}
+  - {fileID: 6687918864592958303}
+  - {fileID: 7648250020409537355}
+  - {fileID: 4927848077302095813}
+  - {fileID: 923987896717557986}
 --- !u!1 &6459045682151020618
 GameObject:
   m_ObjectHideFlags: 0

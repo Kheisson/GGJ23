@@ -28,6 +28,9 @@ namespace Interactables {
         private bool[] activateFertileLand = { false, true, false, true};
         private bool[] activateSeededLand = { false, true, true, true };
         private bool[] activateEmptyLand = { true, false, false, true };
+        private VeggySo currentVeggyOnLand;
+
+        public VeggySo CurrentVeggyOnLand => currentVeggyOnLand;
 
         public GameObject CropObject
         {
@@ -36,7 +39,8 @@ namespace Interactables {
                 if (cropObject != null)
                 {
                     InteractableType = EInteractableType.Land;
-
+                    status = Status.FERTILE;
+                    changeLandMesh(activateEmptyLand);
                     return cropObject;
                 }
 
@@ -105,6 +109,8 @@ namespace Interactables {
                     break;
                 case Status.WET: break;
                 case Status.RIPE:
+                    rotTimer.StopTimer();
+                    rotTimer.ResetTimer();
                     break;
                 case Status.ROTTEN: 
                     if(workItem.Type == WorkItem.ItemType.HANDS)
@@ -134,7 +140,8 @@ namespace Interactables {
         {
             Debug.Log("Planeted" + leftHandItem.CurrentVeggy.veggeyName);
             status = Status.SEEDED;
-            producePrefab = leftHandItem.CurrentVeggy.veggeyPrefab;
+            currentVeggyOnLand = leftHandItem.CurrentVeggy;
+            producePrefab = currentVeggyOnLand.veggeyPrefab;
             Destroy(leftHandItem.gameObject);
         }
 

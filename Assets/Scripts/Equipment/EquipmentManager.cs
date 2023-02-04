@@ -68,21 +68,11 @@ namespace Equipment
             if (land == null || LeftHand.childCount != 0) return;
             
             var veggie = Instantiate(land.CropObject, LeftHand, true);
+            ItemInLeftHand.CurrentVeggy = land.CurrentVeggyOnLand;
             ResetPositionAndRotation(veggie.transform);
             Destroy(land.CropObject);
         }
-
-        //private void EquipLandVegtiable(GameObject landVeggy)
-        //{
-        //    if (ItemInLeftHand != null)
-        //    {
-        //        Debug.Log("Left hand is full");
-        //        return;
-        //    }
-        //    GameObject vegitable = landVeggy.transform.GetChild(3).GetChild(0).gameObject;
-        //    vegitable.transform.parent = LeftHand;
-        //    ResetPositionAndRotation(vegitable.transform);
-        //}
+        
         private void EquipWorkItem(int index)
         {
             _currentWorkItem = workItems[index];
