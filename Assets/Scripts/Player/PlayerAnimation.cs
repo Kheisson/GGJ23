@@ -9,6 +9,8 @@ namespace Player
         private readonly Animator _animator;
         private readonly int _speedHash = Animator.StringToHash("Speed");
         private readonly int _fireHash = Animator.StringToHash("Fire");
+        
+        
 
         public PlayerAnimation(Animator animator)
         {

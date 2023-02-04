@@ -29,6 +29,11 @@ namespace Managers
             
             foreach (var order in orders)
             {
+                if (order == null)
+                {
+                    orders.Remove(order);
+                }
+                
                 if (order.TryCompleteOrder(veggy, onOrderComplete))
                 {
                     break;
