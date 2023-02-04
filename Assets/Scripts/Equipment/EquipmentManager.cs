@@ -55,6 +55,7 @@ namespace Equipment
             
             var seedContainer = item.GetComponent<SeedContainer>();
             seedHeldName = seedContainer.veggyName;
+            ItemInLeftHand.CurrentVeggy = seedContainer.VeggySo;
             var seedBox = Instantiate(seedContainer.SeedPrefab, LeftHand, true);
             ResetPositionAndRotation(seedBox.transform);
         }

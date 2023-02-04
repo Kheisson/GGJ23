@@ -11,6 +11,7 @@ namespace Interactables {
         [SerializeField] private Mesh fertileLand;
 
         private Status status;
+        private GameObject producePrefab;
 
         private void Awake()
         {
@@ -30,7 +31,7 @@ namespace Interactables {
                 case Status.FERTILE: if (leftHandItem != null && leftHandItem.Type == HoldableItem.ItemType.SEED) { plantSeed(leftHandItem, seedHeldName); } break;
                 case Status.SEEDED: if(workItem.Type == WorkItem.ItemType.WATERCAN) { status = Status.WET; } break;
                 case Status.WET: break;
-                case Status.RIPE:
+                case Status.RIPE: //TODO: Spawn produce prefab in the place.
                 case Status.ROTTEN: if(workItem.Type == WorkItem.ItemType.HANDS) { status = Status.FERTILE; } break;
             }
             Debug.Log(status);
@@ -49,6 +50,7 @@ namespace Interactables {
         {
             Debug.Log("Planeted" + seedName);
             status = Status.SEEDED;
+            producePrefab = leftHandItem.CurrentVeggy.veggeyPrefab;
             Destroy(leftHandItem.gameObject);
         }
     }
