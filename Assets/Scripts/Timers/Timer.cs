@@ -60,5 +60,10 @@ namespace Timers
         {
             return _currentTime;
         }
+
+        public void ChangeTime(float newTime)
+        {
+            _time = newTime;
+        }
     }
 }

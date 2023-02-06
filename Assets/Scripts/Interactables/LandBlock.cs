@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Timers;
 using System;
+using TMPro;
 
 namespace Interactables {
     public class LandBlock : InteractableObject
@@ -15,9 +16,11 @@ namespace Interactables {
         [SerializeField] private Transform LeftHandPos;
         public enum Status{ EMPTY, FERTILE, SEEDED, WET, RIPE, ROTTEN };
 
-        public float growTimeout = 10f;
-        public float rotTimeout = 5f;
+        public float baseGrowTimeout = 10f;
+        public float baseRotTimeout = 5f;
+        public float randomGrowTimeRange = 10f;
 
+        private TextMeshProUGUI growTimerVisual;
         private EquipmentManager equipManager;
         private Status status;
         private GameObject producePrefab;
@@ -52,11 +55,12 @@ namespace Interactables {
         {
             InteractableType = EInteractableType.Land;
             status = Status.EMPTY;
+            growTimerVisual = GetComponentInChildren<TextMeshProUGUI>();
             MeshRenderer = GetComponentInChildren<MeshRenderer>();
             OriginalMaterial = MeshRenderer.material;
             children = new List<GameObject>();
-            growTimer = new Timer(growTimeout);
-            rotTimer = new Timer(rotTimeout);
+            growTimer = new Timer(baseGrowTimeout);
+            rotTimer = new Timer(baseRotTimeout);
             growTimer.OnTimerEnd += changeToCropReady;
             rotTimer.OnTimerEnd += changeToCropRotten;
             foreach (Transform child in transform)
@@ -67,9 +71,11 @@ namespace Interactables {
 
         private void Update()
         {
+            
             if (growTimer != null)
             {
-                growTimer.UpdateTimer(); 
+                growTimerVisual.text = ((int)growTimer.GetTime()).ToString();
+                growTimer.UpdateTimer();
             }
             
             if (rotTimer != null)
@@ -104,6 +110,9 @@ namespace Interactables {
                         children[1].GetComponent<MeshRenderer>().material = wetFertiledLand;
                         MeshRenderer = GetComponentInChildren<MeshRenderer>();
                         OriginalMaterial = MeshRenderer.material;
+                        growTimerVisual.enabled = true;
+                        growTimer.ChangeTime(baseGrowTimeout + UnityEngine.Random.Range(0f, randomGrowTimeRange));
+                        growTimer.ResetTimer();
                         growTimer.StartTimer();
                     }
                     break;
@@ -160,6 +169,7 @@ namespace Interactables {
         {
             Debug.Log("Crop Ready!");
 
+            growTimerVisual.enabled = false;
             growTimer.StopTimer();
             growTimer.ResetTimer();
 
