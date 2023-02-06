@@ -15,7 +15,8 @@ namespace Equipment
         [SerializeField] private PlayerContainer playerContainer;
         [SerializeField] private WorkItem[] workItems;
 
-        public event Action itemPickUp;
+        public event Action<HoldableItem> itemPickUp;
+        public event Action seedDestroyed;
 
         private WorkItem _currentWorkItem;
         public HoldableItem ItemInLeftHand => LeftHand.GetComponentInChildren<HoldableItem>();
@@ -59,11 +60,11 @@ namespace Equipment
                 return;
             }
 
-            itemPickUp?.Invoke();
             var seedContainer = item.GetComponent<SeedContainer>();
             var seed = Instantiate(seedContainer.SeedPrefab, LeftHand, true);
             ItemInLeftHand.CurrentVeggy = seedContainer.VeggySo;
             ResetPositionAndRotation(seed.transform);
+            itemPickUp?.Invoke(ItemInLeftHand);
         }
 
         private void EquipVegetable(GameObject vegetable)
@@ -71,11 +72,11 @@ namespace Equipment
             var land = vegetable.GetComponent<LandBlock>();
             if (land == null || LeftHand.childCount != 0) return;
 
-            itemPickUp?.Invoke();
             var veggie = Instantiate(land.CropObject, LeftHand, true);
             ItemInLeftHand.CurrentVeggy = land.CurrentVeggyOnLand;
             ResetPositionAndRotation(veggie.transform);
             Destroy(land.CropObject);
+            itemPickUp?.Invoke(ItemInLeftHand);
         }
         
         private void EquipWorkItem(int index)
@@ -98,9 +99,13 @@ namespace Equipment
             itemTransform.localRotation = Quaternion.identity;
         }
         
-        private void DestroyItemInLeftHand()
+        public void DestroyItemInLeftHand()
         {
             if (ItemInLeftHand == null) return;
+            if(ItemInLeftHand.Type == HoldableItem.ItemType.SEED)
+            {
+                seedDestroyed?.Invoke();
+            }
             Destroy(LeftHand.GetChild(0).gameObject);
         }
         

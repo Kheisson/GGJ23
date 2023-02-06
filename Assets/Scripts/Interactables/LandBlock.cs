@@ -20,8 +20,8 @@ namespace Interactables {
         public float baseRotTimeout = 5f;
         public float randomGrowTimeRange = 10f;
 
-        private TextMeshProUGUI growTimerVisual;
         private EquipmentManager equipManager;
+        private TextMeshProUGUI growTimerVisual;
         private Status status;
         private GameObject producePrefab;
         private GameObject cropObject;
@@ -53,6 +53,7 @@ namespace Interactables {
 
         private void Awake()
         {
+            equipManager = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipmentManager>();
             InteractableType = EInteractableType.Land;
             status = Status.EMPTY;
             growTimerVisual = GetComponentInChildren<TextMeshProUGUI>();
@@ -151,7 +152,7 @@ namespace Interactables {
             status = Status.SEEDED;
             currentVeggyOnLand = leftHandItem.CurrentVeggy;
             producePrefab = currentVeggyOnLand.veggeyPrefab;
-            Destroy(leftHandItem.gameObject);
+            equipManager.DestroyItemInLeftHand();
         }
 
         private void changeLandMesh(bool[] childrenFlags)

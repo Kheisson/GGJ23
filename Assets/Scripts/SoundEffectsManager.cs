@@ -43,7 +43,7 @@ public class SoundEffectsManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private void playItemPickUp()
+    private void playItemPickUp(HoldableItems.HoldableItem pickedItem)
     {
         audioSource.clip = pickup;
         audioSource.Play();
