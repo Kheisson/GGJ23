@@ -4187,6 +4187,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 22672112719300034, guid: c088953430b9143d7ad94e615754dcf2,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 22672112719300034, guid: c088953430b9143d7ad94e615754dcf2,
+        type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 22672112719300039, guid: c088953430b9143d7ad94e615754dcf2,
         type: 3}
       propertyPath: grid

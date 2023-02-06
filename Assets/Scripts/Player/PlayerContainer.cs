@@ -66,6 +66,7 @@ namespace Player
 
         private void OnMove(InputValue value)
         {
+            Debug.Log("Moving! " + value.ToString());
             _playerMovement.SetMovement(value.Get<Vector2>());
             _playerAnimation.OnMove(value);
         }
